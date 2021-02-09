@@ -25,7 +25,7 @@ export default {
   mounted() {
     console.log(sfxConfig);
     ComfyJS.onCommand = this.handleCommand;
-    ComfyJS.Init("lukeocodes");
+    ComfyJS.Init(process.env.VUE_APP_CHANNEL_NAME);
   },
 
   watch: {
