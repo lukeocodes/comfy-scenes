@@ -41,7 +41,9 @@ This can be deployed straight to Netlify, to use in your stream. Just click the 
 
 [![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/lukeocodes/comfy-effects)
 
-## Project setup
+Remember to add/edit `VUE_APP_CHANNEL_NAME` in your deploy environment to the channel name to connect to.
+
+## Project Setup
 
 Created with `vue create`, this app can be installed with yarn or npm, then run `serve` to start it locally.
 
@@ -52,7 +54,7 @@ npm install
 ### Compiles and hot-reloads for starting locally
 
 ```
-npm run serve
+VUE_APP_CHANNEL_NAME=<your-channel-name> npm run serve
 ```
 
 ### Compiles and minifies for production
