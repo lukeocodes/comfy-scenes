@@ -1,0 +1,2 @@
+[template.environment]
+VUE_APP_CHANNEL_NAME = "Change to your Twitch channel name"

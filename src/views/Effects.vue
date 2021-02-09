@@ -57,7 +57,7 @@ export default {
         this.queue.push(sfx);
       }
 
-      if (command === 'mute') {
+      if (command === "mute") {
         this.effect = null;
         this.timeout = null;
         this.queue = [];
