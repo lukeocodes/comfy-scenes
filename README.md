@@ -1,7 +1,7 @@
 # Comfy Effects
 ![GitHub](https://img.shields.io/github/license/lukeocodes/comfy-effects?style=flat-square)
 
-### A rudimentary soundboard for Twitch streamers. 
+### A rudimentary effects board for Twitch streamers. 
 
 It monitors your Twitch channel chat for `!commands` using [Comfy.js](https://github.com/instafluff/ComfyJS) (by [instafluff](https://github.com/instafluff/ComfyJS#instafluff) and [others](https://github.com/instafluff/ComfyJS#credits)), and plays a corresponding `.mp3` file.
 
