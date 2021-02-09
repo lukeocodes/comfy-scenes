@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       effect: null,
-      processing: false,
+      timeout: null,
       queue: []
     };
   },
@@ -43,10 +43,10 @@ export default {
     handleEnded() {
       this.effect = null;
 
-      const wait = setTimeout(() => {
+      this.timeout = setTimeout(() => {
         if (this.queue.length > 0) {
           this.effect = this.queue.shift();
-          clearTimeout(wait);
+          clearTimeout(this.timeout);
         }
       }, 200);
     },
@@ -55,6 +55,12 @@ export default {
       if (command in sfxConfig) {
         const sfx = sfxConfig[command];
         this.queue.push(sfx);
+      }
+
+      if (command === 'mute') {
+        this.effect = null;
+        this.timeout = null;
+        this.queue = [];
       }
     }
   }
