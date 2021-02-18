@@ -1,13 +1,21 @@
 <template>
   <div>
-    <Effect v-if="effect" :sfx="effect" v-on:ended="handleEnded" />
+    <!-- <Effect
+      :effect="{
+        img: 'vonage.png',
+        ttl: 5000,
+        pos: 'topright',
+        animation: 'flicker'
+      }"
+    /> -->
+    <Effect v-if="effect" :effect="effect" v-on:ended="handleEnded" />
   </div>
 </template>
 
 <script>
 import Effect from "../components/Effect";
 
-const sfxConfig = require("../sfx/config");
+const config = require("../config");
 const ComfyJS = require("comfy.js");
 export default {
   components: {
@@ -23,7 +31,7 @@ export default {
   },
 
   mounted() {
-    console.log(sfxConfig);
+    console.log(config);
     ComfyJS.onCommand = this.handleCommand;
     ComfyJS.Init(process.env.VUE_APP_CHANNEL_NAME);
   },
@@ -52,9 +60,9 @@ export default {
     },
 
     handleCommand(user, command /*, message, flags, extra*/) {
-      if (command in sfxConfig) {
-        const sfx = sfxConfig[command];
-        this.queue.push(sfx);
+      if (command in config) {
+        const effect = config[command];
+        this.queue.push(effect);
       }
 
       if (command === "mute") {

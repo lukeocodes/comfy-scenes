@@ -11,9 +11,9 @@ You can see this in use, in the wild, by tuning into the [lukeocodes stream](htt
 
 ## Adding Sounds
 
-To add a sound, add the mp3 to `public/sfx/<your-sound>.mp3`. 
+To add a sound, add the mp3 to `public/effects/sounds/<your-sound>.mp3`. Gifs and images are coming soon.
 
-Now edit `src/sfx/config.js` and add a new object for your sound.
+Now edit `src/config.js` and add a new object for your sound.
 
 ```diff
  module.exports = {
