@@ -5,6 +5,12 @@ module.exports = {
   energize: {
     mp3: "transport.mp3"
   },
+  absolutely: {
+    mp3: "absolutely.mp3"
+  },
+  look: {
+    mp3: "look.mp3"
+  },
   vonage: {
     mp3: "vonage.mp3",
     img: "vonage.png",
