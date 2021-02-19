@@ -6,6 +6,14 @@ module.exports = {
     mp3: "transport.mp3"
   },
   vonage: {
+    mp3: "vonage.mp3",
+    img: "vonage.png",
+    ttl: 5000,
+    pos: "topright",
+    animation: "flicker"
+  },
+  vonagedevs: {
+    mp3: "vonage.mp3",
     img: "vonage.png",
     ttl: 5000,
     pos: "topright",

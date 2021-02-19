@@ -38,8 +38,11 @@ export default {
     }
   },
 
+  /**
+   * MP3 and Image are mutually exclusive, so two
+   * conditions are used
+   */
   mounted() {
-    console.log(this.effect);
     if (this.effect.mp3) {
       const sound = this.$refs.audioFile;
       sound.src = `effects/sounds/${this.effect.mp3}`;

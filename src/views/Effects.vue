@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!-- <Effect
-      :effect="{
-        img: 'vonage.png',
-        ttl: 5000,
-        pos: 'topright',
-        animation: 'flicker'
-      }"
-    /> -->
     <Effect v-if="effect" :effect="effect" v-on:ended="handleEnded" />
   </div>
 </template>
@@ -31,7 +23,6 @@ export default {
   },
 
   mounted() {
-    console.log(config);
     ComfyJS.onCommand = this.handleCommand;
     ComfyJS.Init(process.env.VUE_APP_CHANNEL_NAME);
   },
@@ -59,7 +50,7 @@ export default {
       }, 200);
     },
 
-    handleCommand(user, command /*, message, flags, extra*/) {
+    handleCommand(user, command) {
       if (command in config) {
         const effect = config[command];
         this.queue.push(effect);
