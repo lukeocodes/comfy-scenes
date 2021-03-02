@@ -1,14 +1,24 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Effects from "../views/Effects.vue";
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    name: "Home",
+    component: Home
+  },
+  {
+    path: "/effects",
     name: "Effects",
-    component: Effects
+    component: () => import("../views/Effects.vue")
+  },
+  {
+    path: "/overlays",
+    name: "Overlays",
+    component: () => import("../views/Overlays.vue")
   }
 ];
 

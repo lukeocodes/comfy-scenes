@@ -1,9 +1,5 @@
-// module.exports = {
-//   configureWebpack: {
-//     devServer: {
-//       watchOptions: {
-//         poll: true
-//       }
-//     }
-//   }
-// };
+module.exports = {
+  devServer: {
+    disableHostCheck: true
+  }
+};
