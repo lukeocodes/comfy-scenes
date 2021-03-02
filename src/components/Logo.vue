@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("http://fonts.cdnfonts.com/css/beon");
+@import url("//fonts.cdnfonts.com/css/beon");
 
 .sign {
   font-family: "Beon" !important;
