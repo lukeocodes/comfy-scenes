@@ -35,17 +35,14 @@ export default {
       }
 
       if ("action" in effect) {
-        console.log(`it has an action ${effect.action}`);
         this.action = effect.action;
       }
 
       if ("sfx" in effect) {
-        console.log(`it has an sfx ${effect.sfx.src}`);
         this.sfx = effect.sfx;
       }
 
       if ("vfx" in effect) {
-        console.log(`it has an vfx ${effect.vfx.src}`);
         this.vfx = effect.vfx;
       }
     },
@@ -53,7 +50,9 @@ export default {
     action(action) {
       if (action) {
         this.$store.dispatch(this.effect.action, this.effect);
-        this.actionEnded();
+        this.$nextTick(() => {
+          this.actionEnded();
+        });
       }
     },
 
@@ -72,14 +71,6 @@ export default {
 
   computed: {
     canProcess() {
-      console.log(
-        `the current effect is ${this.effect !== null}, the queue length is ${
-          this.queue.length
-        }`
-      );
-      if (this.effect === null && this.queue.length > 0) {
-        console.log(`we can process the next item`);
-      }
       return this.effect === null && this.queue.length > 0;
     },
 
@@ -105,7 +96,6 @@ export default {
     nextEffect() {
       this.timeout = setTimeout(() => {
         if (this.queue.length > 0) {
-          console.log(`get the next item to process`);
           this.$store.commit("process", this.$store.state.queue.shift());
           clearTimeout(this.timeout);
         }
@@ -127,17 +117,14 @@ export default {
     },
 
     actionEnded() {
-      console.log(`the action ${this.action} just ended`);
       this.action = null;
     },
 
     sfxEnded() {
-      console.log(`the sfx ${this.sfx.src} just ended`);
       this.sfx = null;
     },
 
     vfxEnded() {
-      console.log(`the vfx ${this.vfx.src} just ended`);
       this.vfx = null;
     }
   }
