@@ -1,63 +1,89 @@
 <template>
-  <div class="relative text-4xl sign">
+  <div
+    class="relative text-4xl sign"
+    :style="signStyle"
+    :class="{ off: !$store.state.light }"
+    v-on:click="$store.state.light = !$store.state.light"
+  >
     @luke<b>o</b>codes
   </div>
 </template>
 
 <script>
 export default {
-  components: {}
+  components: {},
+
+  computed: {
+    signStyle() {
+      const style = {
+        "font-family": "Beon",
+        color: this.$store.state.logo.base,
+        "text-shadow": `0 -40px 100px, 0 0 2px, 0 0 1em ${this.$store.state.logo.glow}, 0 0 0.5em ${this.$store.state.logo.glow}, 0 0 0.1em ${this.$store.state.logo.shine}, 0 6px 3px ${this.$store.state.logo.shadow}`
+      };
+
+      if (!this.$store.state.light) {
+        style["text-shadow"] = "0 3px 3px #000";
+        style["color"] = "rgb(97, 97, 97)";
+      }
+
+      return style;
+    }
+  }
 };
 </script>
 
 <style scoped>
 @import url("//fonts.cdnfonts.com/css/beon");
 
-.sign {
+/* .sign {
   font-family: "Beon" !important;
   color: rgb(255, 209, 191);
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444,
     0 0 0.1em #ff8f44, 0 6px 3px #000;
-}
+} */
 
 .sign.off {
   color: rgb(97, 97, 97);
-  text-shadow: 0 -40px 100px, 0 0 2px, 0 3px 3px #000;
+  text-shadow: 0 3px 3px #000;
 }
 
 .sign b {
   font-weight: normal;
-  animation: blink linear infinite 2s;
+  animation: blink linear infinite 200s;
 }
 
 @keyframes blink {
-  78% {
+  2.76% {
     color: inherit;
     text-shadow: inherit;
   }
-  79% {
+  2.79% {
     color: rgb(97, 97, 97);
   }
-  80% {
-    text-shadow: 0 2px 2px #000;
+  2.80% {
+    text-shadow: 0 3px 3px #000;
   }
-  81% {
+  2.84% {
     color: inherit;
     text-shadow: inherit;
   }
-  82% {
+  2.87% {
     color: rgb(97, 97, 97);
-    text-shadow: 0 -40px 100px, 0 0 2px, 0 3px 3px #000;
+    text-shadow: 0 3px 3px #000;
   }
-  83% {
+  2.90% {
     color: inherit;
     text-shadow: inherit;
   }
-  92% {
-    color: rgb(97, 97, 97);
-    text-shadow: 0 -40px 100px, 0 0 2px, 0 3px 3px #000;
+  90.90% {
+    color: inherit;
+    text-shadow: inherit;
   }
-  92.5% {
+  90.92% {
+    color: rgb(97, 97, 97);
+    text-shadow: 0 3px 3px #000;
+  }
+  90.93% {
     color: inherit;
     text-shadow: inherit;
   }

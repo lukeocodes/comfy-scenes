@@ -1,25 +1,18 @@
 <template>
   <div class="relative flex backdrop">
     <Lamp />
-    <Character />
+    <Pet />
   </div>
 </template>
 
 <script>
-import Character from "@/components/Character";
+import Pet from "@/components/Pet";
 import Lamp from "@/components/Lamp";
 
 export default {
   components: {
-    Character,
+    Pet,
     Lamp
   }
 };
 </script>
-
-<style scoped>
-.backdrop {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("~@/assets/images/brick.png");
-}
-</style>
