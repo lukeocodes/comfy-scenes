@@ -1,16 +1,18 @@
 <template>
-  <div class="relative ml-4 text-4xl">
-    <Letter char="GH" />
-    <Letter char="TW" />
+  <div class="relative flex ml-4 space-x-4">
+    <GitHubLogo />
+    <TwitterLogo />
   </div>
 </template>
 
 <script>
-import Letter from "@/components/Logo/Letter";
+import GitHubLogo from "@/components/Socials/GitHubLogo";
+import TwitterLogo from "@/components/Socials/TwitterLogo";
 
 export default {
   components: {
-    Letter
+    GitHubLogo,
+    TwitterLogo
   }
 };
 </script>
