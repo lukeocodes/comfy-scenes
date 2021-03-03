@@ -24,7 +24,7 @@ export default {
       });
       sound.play().catch(error => {
         console.log("failed to play sound", error);
-        // this.$emit("ended");
+        this.$emit("ended");
       });
     }
   }
