@@ -1,65 +1,55 @@
 <template>
   <div>
-    <Effect v-if="effect" :effect="effect" v-on:ended="handleEnded" />
+    <!-- <SoundEffect v-if="sfx" :effect="sfx" v-on:ended="sfxEnded" />
+    <VisualEffect v-if="vfx" :effect="vfx" v-on:ended="vfxEnded" /> -->
   </div>
 </template>
 
 <script>
-import Effect from "../components/Effect";
+// import SoundEffect from "../components/Effects/SoundEffect";
+// import VisualEffect from "../components/Effects/VisualEffect";
 
-// const config = require("../config");
-// const ComfyJS = require("comfy.js");
 export default {
-  components: {
-    Effect
-  },
-
-  data() {
-    return {
-      effect: null,
-      timeout: null,
-      queue: []
-    };
-  },
-
-  mounted() {
-    // ComfyJS.onCommand = this.handleCommand;
-    // ComfyJS.Init(process.env.VUE_APP_CHANNEL_NAME);
-  },
-
-  watch: {
-    queue: {
-      deep: true,
-      handler() {
-        if (this.effect === null) {
-          // this.effect = this.queue.shift();
-        }
-      }
-    }
-  },
-
-  methods: {
-    handleEnded() {
-      // this.effect = null;
-      // this.timeout = setTimeout(() => {
-      //   if (this.queue.length > 0) {
-      //     this.effect = this.queue.shift();
-      //     clearTimeout(this.timeout);
-      //   }
-      // }, 200);
-    }
-
-    // handleCommand(user, command) {
-    // if (command in config) {
-    //   const effect = config[command];
-    //   this.queue.push(effect);
-    // }
-    // if (command === "mute") {
-    //   this.effect = null;
-    //   this.timeout = null;
-    //   this.queue = [];
-    // }
-    // }
-  }
+  // components: {
+  //   SoundEffect,
+  //   VisualEffect
+  // },
+  // data() {
+  //   return {
+  //     sfx: null,
+  //     vfx: null
+  //   };
+  // },
+  // watch: {
+  //   effect(effect) {
+  //     if (effect && "sfx" in effect) {
+  //       this.sfx = effect["sfx"];
+  //     }
+  //     if (effect && "vfx" in effect) {
+  //       this.vfx = effect["vfx"];
+  //     }
+  //   },
+  //   allEnded() {
+  //     this.$store.commit("processed");
+  //   }
+  // },
+  // computed: {
+  //   allEnded() {
+  //     return this.sfx === null && this.vfx === null;
+  //   },
+  //   effect() {
+  //     return this.$store.state.effect;
+  //   }
+  // },
+  // methods: {
+  //   sfxEnded() {
+  //     console.log(`sfx ${this.sfx} ended`);
+  //     this.sfx = null;
+  //   },
+  //   vfxEnded() {
+  //     console.log(`vfx ${this.vfx} ended`);
+  //     this.vfx = null;
+  //   }
+  // }
 };
 </script>

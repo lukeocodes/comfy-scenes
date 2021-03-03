@@ -16,28 +16,40 @@ export default new Vuex.Store({
     queue: [],
     effect: null
   },
+
   mutations: {
     enqueue(state, effect) {
       state.queue.push(effect);
     },
+
     process(state, effect) {
       state.effect = effect;
     },
 
-    // !bulb #ffd1bf
-    // !bulb rgb(125,125,222)
-    // !bulb blue
+    processed(state) {
+      state.effect = null;
+    },
 
-    resetBulb(state) {
-      state.logo = {
+    bulbColor(state, colors) {
+      state.logo = colors;
+    },
+
+    light(state, status) {
+      state.light = status;
+    }
+  },
+
+  actions: {
+    resetBulb({ commit }) {
+      commit("bulbColor", {
         base: "#ffd1bf",
         glow: "#ff4444",
         shine: "#ff8f44",
         shadow: "#000000"
-      };
+      });
     },
 
-    changeBulb(state, options) {
+    changeBulb({ commit }, options) {
       const regex = new RegExp(
         "^(#([a-f0-9]{3}){1,2})|(rgb(((25[0-5]|2[0-4]d|1d{1,2}|dd?)s*,s*?){2}(25[0-5]|2[0-4]d|1d{1,2}|dd?)s*))$"
       );
@@ -48,35 +60,31 @@ export default new Vuex.Store({
         const color = Color(colorCode);
 
         if (color.isDark()) {
-          state.logo = {
+          commit("bulbColor", {
             glow: color.hexString(),
             shine: color.saturate(0.2).hexString(),
             base: color.lighten(0.8).hexString(),
             shadow: "#000000"
-          };
+          });
         } else {
-          state.logo = {
+          commit("bulbColor", {
             base: color.hexString(),
             glow: color.lighten(0.8).hexString(),
             shine: color.saturate(0.2).hexString(),
             shadow: "#000000"
-          };
+          });
         }
       }
-
-      state.effect = null;
     },
 
-    lightsOut(state) {
-      state.light = false;
-      state.effect = null;
+    lightsOut({ commit }) {
+      commit("light", false);
     },
 
-    lightsOn(state) {
-      state.light = true;
-      state.effect = null;
+    lightsOn({ commit }) {
+      commit("light", true);
     }
   },
-  actions: {},
+
   modules: {}
 });
