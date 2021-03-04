@@ -1,30 +1,13 @@
 <template>
-  <div
-    id="pet"
-    ref="pet"
-    :class="state"
-    class="absolute w-8 h-8 bg-blue-200 border-2 border-black"
-    :style="styleObj"
-    @click="getNewRight"
-  ></div>
+  <div id="pet" ref="pet" :class="state" :style="styleObj" />
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      state: "idle",
-      right: 0,
-      newRight: 0,
-      timeToMove: 0,
-      pxToMove: 0
-    };
-  },
-
   computed: {
     styleObj() {
       return {
-        zIndex: "1000",
+        zIndex: "4",
         right: `${this.right}px`,
         bottom: 0,
         transition: `right ${this.timeToMove}s linear`
@@ -35,41 +18,108 @@ export default {
       return window.innerWidth - this.petSize.width;
     },
 
-    maxBottom() {
-      return window.innerHeight - this.petSize.height;
-    },
-
     petSize() {
       return this.$refs.pet.getBoundingClientRect();
+    },
+
+    newRight() {
+      return this.$store.state.pet.newRight;
+    },
+
+    pxToMove() {
+      return this.$store.state.pet.pxToMove;
+    },
+
+    timeToMove() {
+      return this.$store.state.pet.timeToMove;
+    },
+
+    state() {
+      return this.$store.state.pet.state;
+    },
+
+    right() {
+      return this.$store.state.pet.right;
+    },
+
+    currentPos() {
+      if (!this.$refs.pet) {
+        return 0;
+      }
+
+      return this.$refs.pet.getBoundingClientRect().right;
     }
   },
 
   watch: {
-    newRight(newRight, oldRight) {
-      this.$nextTick(() => {
-        this.pxToMove = Math.abs(oldRight - newRight);
-        this.timeToMove = this.pxToMove / 50;
-        this.state = `walking ${oldRight > newRight ? "left" : "right"}`;
-        this.right = newRight;
-      });
+    currentPos(val) {
+      console.log(val);
     }
+  },
+
+  beforeDestroy() {
+    this.$refs.pet.removeEventListener("transitionend");
   },
 
   mounted() {
-    // this.maxRight = this.$refs.app.offsetWidth;
+    this.$store.commit("petMaxRight", this.maxRight);
+    this.$store.dispatch("movePet");
 
-    // this.newRight = this.getNewRight();
+    this.$refs.pet.addEventListener("transitionend", () => {
+      this.$store.commit("petIdle");
 
-    this.getNewRight();
-  },
+      const timeout = setTimeout(() => {
+        this.$store.commit("enqueue", {
+          action: {
+            name: "movePet"
+          }
+        });
 
-  methods: {
-    walkToRight() {},
-
-    getNewRight() {
-      console.log("yes?");
-      this.newRight = Math.floor(Math.random() * (this.maxRight - 1 + 1) + 1);
-    }
+        clearTimeout(timeout);
+      }, 50000);
+    });
   }
 };
 </script>
+
+<style scoped>
+#pet {
+  @apply absolute;
+  @apply w-16;
+  @apply h-16;
+  @apply border-black;
+  background-image: url("~@/assets/images/pet.png");
+  background-size: auto 4rem;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  animation: 1s idle infinite steps(1);
+}
+
+#pet.walking {
+  background-position-x: -8rem;
+  animation: 0.5s walking infinite steps(1);
+}
+
+#pet.walking.right {
+  transform: scaleX(-1);
+}
+
+@keyframes idle {
+  0% {
+    background-position-x: 0;
+  }
+  50% {
+    background-position-x: -12rem;
+  }
+}
+
+@keyframes walking {
+  0% {
+    background-position-x: -8rem;
+  }
+  50% {
+    background-position-x: -20rem;
+  }
+}
+</style>

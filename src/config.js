@@ -1,38 +1,65 @@
 module.exports = {
+  // pet commands
+  poke: {
+    action: {
+      name: "movePet"
+    },
+    sfx: {
+      src: "pop.mp3"
+    }
+  },
   // change bulb colour commands
   resetbulb: {
-    action: "resetBulb",
+    action: {
+      name: "resetBulb"
+    },
     sfx: {
       src: "pop.mp3"
     }
   },
   bulb: {
-    action: "changeBulb",
+    action: {
+      name: "changeBulb"
+    },
     sfx: {
       src: "pop.mp3"
     }
   },
   // turn logo light on/off commands
   off: {
-    action: "lightsOut"
+    action: {
+      name: "lightsOut"
+    }
   },
   lightsout: {
-    action: "lightsOut"
+    action: {
+      name: "lightsOut"
+    }
   },
   lightsoff: {
-    action: "lightsOut"
+    action: {
+      name: "lightsOut"
+    }
   },
   darkness: {
-    action: "lightsOut"
+    action: {
+      name: "lightsOut"
+    }
   },
   lightson: {
-    action: "lightsOn"
+    action: {
+      name: "lightsOn"
+    }
   },
   lightness: {
-    action: "lightsOn"
+    action: {
+      name: "lightsOn"
+    }
   },
   on: {
-    action: "lightsOn"
+    action: {
+      name: "lightsOn"
+    }
   },
   // sfx
   pop: {

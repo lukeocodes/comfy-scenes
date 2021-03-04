@@ -49,9 +49,12 @@ export default {
 
     action(action) {
       if (action) {
-        this.$store.dispatch(this.effect.action, this.effect);
-        this.$nextTick(() => {
-          this.actionEnded();
+        this.$store.dispatch(action.name, this.effect).then(ttl => {
+          // allow an action to return its own timeout
+          const timeout = setTimeout(() => {
+            this.actionEnded();
+            clearTimeout(timeout);
+          }, (action.ttl > ttl ? action.ttl : ttl) || 200);
         });
       }
     },

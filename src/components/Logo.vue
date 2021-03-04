@@ -3,7 +3,6 @@
     class="relative text-4xl sign"
     :style="signStyle"
     :class="{ off: !$store.state.light }"
-    v-on:click="$store.state.light = !$store.state.light"
   >
     @luke<b>o</b>codes
   </div>
