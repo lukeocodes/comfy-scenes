@@ -62,7 +62,7 @@ export default new Vuex.Store({
       );
 
       const pxToMove = Math.abs(oldRight - newRight);
-      const timeToMove = pxToMove / 50;
+      const timeToMove = pxToMove / 100;
       const state = `walking ${oldRight > newRight ? "right" : "left"}`;
       const right = newRight;
 

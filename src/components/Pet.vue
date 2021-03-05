@@ -76,7 +76,7 @@ export default {
         });
 
         clearTimeout(timeout);
-      }, 50000);
+      }, 150000);
     });
   }
 };
