@@ -8,6 +8,16 @@ module.exports = {
       src: "pop.mp3"
     }
   },
+  biggly: {
+    action: {
+      name: "petGetBiggly"
+    }
+  },
+  shrink: {
+    action: {
+      name: "petShrink"
+    }
+  },
   // change bulb colour commands
   resetbulb: {
     action: {

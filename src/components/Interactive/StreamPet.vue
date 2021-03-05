@@ -4,26 +4,35 @@
 
 <script>
 export default {
+  data() {
+    return {
+      listener: null
+    };
+  },
+
   computed: {
     styleObj() {
       return {
         zIndex: "4",
         right: `${this.right}px`,
+        width: `${this.petSize}rem`,
+        height: `${this.petSize}rem`,
+        backgroundSize: `auto ${this.petSize}rem`,
         bottom: 0,
         transition: `right ${this.timeToMove}s linear`
       };
     },
 
     maxRight() {
-      return window.innerWidth - this.petSize.width;
+      return window.innerWidth - this.petClientSize.width;
     },
 
-    petSize() {
+    petClientSize() {
       return this.$refs.pet.getBoundingClientRect();
     },
 
-    newRight() {
-      return this.$store.state.pet.newRight;
+    petSize() {
+      return this.$store.state.pet.petSize;
     },
 
     pxToMove() {
@@ -58,14 +67,14 @@ export default {
   },
 
   beforeDestroy() {
-    this.$refs.pet.removeEventListener("transitionend");
+    this.$refs.pet.removeEventListener("transitionend", this.listener);
   },
 
   mounted() {
     this.$store.commit("petMaxRight", this.maxRight);
     this.$store.dispatch("movePet");
 
-    this.$refs.pet.addEventListener("transitionend", () => {
+    this.listener = this.$refs.pet.addEventListener("transitionend", () => {
       this.$store.commit("petIdle");
 
       const timeout = setTimeout(() => {
@@ -85,11 +94,7 @@ export default {
 <style scoped>
 #pet {
   @apply absolute;
-  @apply w-16;
-  @apply h-16;
-  @apply border-black;
   background-image: url("~@/assets/images/pet.png");
-  background-size: auto 4rem;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -110,16 +115,16 @@ export default {
     background-position-x: 0;
   }
   50% {
-    background-position-x: -12rem;
+    background-position-x: -300%;
   }
 }
 
 @keyframes walking {
   0% {
-    background-position-x: -8rem;
+    background-position-x: -200%;
   }
   50% {
-    background-position-x: -20rem;
+    background-position-x: -500%;
   }
 }
 </style>

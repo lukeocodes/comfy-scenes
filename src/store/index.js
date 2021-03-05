@@ -18,7 +18,8 @@ export default new Vuex.Store({
       pxToMove: 0,
       timeToMove: 0,
       state: "idle",
-      right: 0
+      right: 0,
+      petSize: 4
     },
     queue: [],
     effect: null
@@ -55,6 +56,14 @@ export default new Vuex.Store({
   },
 
   actions: {
+    petGetBiggly(context) {
+      context.state.pet.petSize = 8;
+    },
+
+    petShrink(context) {
+      context.state.pet.petSize = 4;
+    },
+
     movePet(context) {
       const oldRight = context.state.pet.right;
       const newRight = Math.floor(
