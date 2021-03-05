@@ -1,18 +1,18 @@
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden">
-    <Backdrop class="flex-grow" />
-    <Ledge />
+    <StreamBackdrop class="flex-grow" />
+    <BottomLedge />
   </div>
 </template>
 
 <script>
-import Ledge from "@/components/Ledge";
-import Backdrop from "@/components/Backdrop";
+import BottomLedge from "@/components/BottomLedge";
+import StreamBackdrop from "@/components/StreamBackdrop";
 
 export default {
   components: {
-    Ledge,
-    Backdrop
+    BottomLedge,
+    StreamBackdrop
   },
 
   data() {

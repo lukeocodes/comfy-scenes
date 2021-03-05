@@ -10,8 +10,6 @@
 
 <script>
 export default {
-  components: {},
-
   computed: {
     signStyle() {
       const style = {
@@ -33,13 +31,6 @@ export default {
 
 <style scoped>
 @import url("//fonts.cdnfonts.com/css/beon");
-
-/* .sign {
-  font-family: "Beon" !important;
-  color: rgb(255, 209, 191);
-  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444,
-    0 0 0.1em #ff8f44, 0 6px 3px #000;
-} */
 
 .sign.off {
   color: rgb(97, 97, 97);

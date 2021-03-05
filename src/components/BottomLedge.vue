@@ -1,18 +1,18 @@
 <template>
   <div class="flex items-center h-16 pl-4 ledge">
-    <Logo />
-    <Social />
+    <StreamLogo />
+    <SocialIcons />
   </div>
 </template>
 
 <script>
-import Logo from "@/components/Logo";
-import Social from "@/components/Social";
+import StreamLogo from "@/components/Interactive/StreamLogo";
+import SocialIcons from "@/components/Static/SocialIcons";
 
 export default {
   components: {
-    Logo,
-    Social
+    StreamLogo,
+    SocialIcons
   }
 };
 </script>

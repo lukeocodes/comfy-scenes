@@ -1,6 +1,6 @@
 <template>
   <div class="text-white">
-    Check out /overlays or /effects
+    Check out /frame-overlay
   </div>
 </template>
 

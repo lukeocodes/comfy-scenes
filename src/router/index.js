@@ -10,15 +10,10 @@ const routes = [
     name: "Home",
     component: Home
   },
-  // {
-  //   path: "/effects",
-  //   name: "Effects",
-  //   component: () => import("../views/Effects.vue")
-  // },
   {
-    path: "/overlays",
-    name: "Overlays",
-    component: () => import("../views/Overlays.vue")
+    path: "/frame-overlay",
+    name: "Frame Overlay",
+    component: () => import("../views/FrameOverlay.vue")
   }
 ];
 
