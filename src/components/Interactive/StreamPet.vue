@@ -1,16 +1,87 @@
 <template>
-  <div id="pet" ref="pet" :class="state" :style="styleObj" />
+  <div id="pet" ref="pet" :class="state" :style="styleObj">
+    <SoundEffect v-if="sfx" :effect="sfx" v-on:ended="sfxEnded" />
+    <VisualEffect v-if="vfx" :effect="vfx" v-on:ended="vfxEnded" />
+  </div>
 </template>
 
 <script>
+import SoundEffect from "@/components/Effects/SoundEffect";
+import VisualEffect from "@/components/Effects/VisualEffect";
+
 export default {
+  components: {
+    SoundEffect,
+    VisualEffect
+  },
+
   data() {
     return {
+      action: null,
+      sfx: null,
+      vfx: null,
+      effect: null,
       listener: null
     };
   },
 
+  watch: {
+    effect(effect) {
+      if (!effect) {
+        return;
+      }
+
+      if ("action" in effect) {
+        this.action = effect.action;
+      }
+
+      if ("sfx" in effect) {
+        this.sfx = effect.sfx;
+      }
+
+      if ("vfx" in effect) {
+        this.vfx = effect.vfx;
+      }
+    },
+
+    action(action) {
+      if (action) {
+        this.$store.dispatch(action.name, this.effect).then(ttl => {
+          // allow an action to return its own timeout
+          const timeout = setTimeout(() => {
+            this.actionEnded();
+            clearTimeout(timeout);
+          }, (action.ttl > ttl ? action.ttl : ttl) || 200);
+        });
+      }
+    },
+
+    allEnded(val) {
+      if (val) {
+        this.effect = null;
+      }
+    },
+
+    canProcess(val) {
+      if (val) {
+        this.nextEffect();
+      }
+    }
+  },
+
   computed: {
+    canProcess() {
+      return this.effect === null && this.queue.length > 0;
+    },
+
+    allEnded() {
+      return this.action === null && this.sfx === null && this.vfx === null;
+    },
+
+    queue() {
+      return this.$store.state.queues.pet;
+    },
+
     styleObj() {
       return {
         zIndex: "4",
@@ -35,10 +106,6 @@ export default {
       return this.$store.state.pet.petSize;
     },
 
-    pxToMove() {
-      return this.$store.state.pet.pxToMove;
-    },
-
     timeToMove() {
       return this.$store.state.pet.timeToMove;
     },
@@ -49,20 +116,6 @@ export default {
 
     right() {
       return this.$store.state.pet.right;
-    },
-
-    currentPos() {
-      if (!this.$refs.pet) {
-        return 0;
-      }
-
-      return this.$refs.pet.getBoundingClientRect().right;
-    }
-  },
-
-  watch: {
-    currentPos(val) {
-      console.log(val);
     }
   },
 
@@ -87,6 +140,29 @@ export default {
         clearTimeout(timeout);
       }, 150000);
     });
+  },
+
+  methods: {
+    nextEffect() {
+      const timeout = setTimeout(() => {
+        if (this.queue.length > 0) {
+          this.effect = this.$store.state.queues.pet.shift();
+          clearTimeout(timeout);
+        }
+      }, 200);
+    },
+
+    actionEnded() {
+      this.action = null;
+    },
+
+    sfxEnded() {
+      this.sfx = null;
+    },
+
+    vfxEnded() {
+      this.vfx = null;
+    }
   }
 };
 </script>

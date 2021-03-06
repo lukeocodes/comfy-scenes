@@ -1,6 +1,27 @@
 module.exports = {
   // pet commands
+  // highfive: [
+  //   {
+  //     queue: "pet",
+  //     action: {
+  //       name: "movePetToMe"
+  //     },
+  //     sfx: {
+  //       src: "quietpop.mp3"
+  //     }
+  //   },
+  //   {
+  //     queue: "pet",
+  //     action: {
+  //       name: "petHighFive"
+  //     },
+  //     sfx: {
+  //       src: "highfive.mp3"
+  //     }
+  //   }
+  // ],
   poke: {
+    queue: "pet",
     action: {
       name: "movePet"
     },

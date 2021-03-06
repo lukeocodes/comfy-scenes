@@ -82,7 +82,7 @@ export default {
     },
 
     queue() {
-      return this.$store.state.queue;
+      return this.$store.state.queues.default;
     },
 
     effect() {
@@ -99,7 +99,10 @@ export default {
     nextEffect() {
       this.timeout = setTimeout(() => {
         if (this.queue.length > 0) {
-          this.$store.commit("process", this.$store.state.queue.shift());
+          this.$store.commit(
+            "process",
+            this.$store.state.queues.default.shift()
+          );
           clearTimeout(this.timeout);
         }
       }, 200);
@@ -108,14 +111,28 @@ export default {
     handleCommand(user, command, message, flags, extra) {
       if (command in config) {
         const effect = config[command];
-        this.$store.commit("enqueue", {
-          ...effect,
-          user,
-          command,
-          message,
-          flags,
-          extra
-        });
+
+        if (Array.isArray(effect)) {
+          effect.forEach(effectPart => {
+            this.$store.commit("enqueue", {
+              ...effectPart,
+              user,
+              command,
+              message,
+              flags,
+              extra
+            });
+          });
+        } else {
+          this.$store.commit("enqueue", {
+            ...effect,
+            user,
+            command,
+            message,
+            flags,
+            extra
+          });
+        }
       }
     },
 

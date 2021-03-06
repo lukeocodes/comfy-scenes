@@ -21,7 +21,10 @@ export default new Vuex.Store({
       right: 0,
       petSize: 4
     },
-    queue: [],
+    queues: {
+      default: [],
+      pet: []
+    },
     effect: null
   },
 
@@ -35,7 +38,11 @@ export default new Vuex.Store({
     },
 
     enqueue(state, effect) {
-      state.queue.push(effect);
+      if ("queue" in effect) {
+        state.queues[effect.queue].push(effect);
+      } else {
+        state.queues.default.push(effect);
+      }
     },
 
     process(state, effect) {
