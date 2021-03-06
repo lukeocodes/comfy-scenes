@@ -4,6 +4,20 @@ import Color from "color2";
 
 Vue.use(Vuex);
 
+const petCalc = (oldRight, newRight, speed = 100) => {
+  const pxToMove = Math.abs(oldRight - newRight);
+  const timeToMove = pxToMove / speed;
+  const state = `walking ${oldRight > newRight ? "right" : "left"}`;
+  const right = newRight;
+
+  return {
+    pxToMove,
+    timeToMove,
+    state,
+    right
+  };
+};
+
 export default new Vuex.Store({
   state: {
     light: true,
@@ -14,6 +28,7 @@ export default new Vuex.Store({
       shadow: "#000000"
     },
     pet: {
+      petCharacter: "greg",
       maxRight: window.innerWidth,
       pxToMove: 0,
       timeToMove: 0,
@@ -64,11 +79,27 @@ export default new Vuex.Store({
 
   actions: {
     petGetBiggly(context) {
-      context.state.pet.petSize = 8;
+      context.state.pet.petSize += 4;
     },
 
     petShrink(context) {
       context.state.pet.petSize = 4;
+    },
+
+    petDave(context) {
+      context.state.pet.petCharacter = "dave";
+    },
+
+    petGreg(context) {
+      context.state.pet.petCharacter = "greg";
+    },
+
+    petBlue(context) {
+      context.state.pet.petCharacter = "blue";
+    },
+
+    petMort(context) {
+      context.state.pet.petCharacter = "mort";
     },
 
     movePet(context) {
@@ -76,15 +107,41 @@ export default new Vuex.Store({
       const newRight = Math.floor(
         Math.random() * (context.state.pet.maxRight - 1 + 1) + 1
       );
+      const petUpdate = petCalc(oldRight, newRight);
 
-      const pxToMove = Math.abs(oldRight - newRight);
-      const timeToMove = pxToMove / 100;
-      const state = `walking ${oldRight > newRight ? "right" : "left"}`;
-      const right = newRight;
+      Object.assign(context.state.pet, petUpdate);
 
-      Object.assign(context.state.pet, { pxToMove, timeToMove, state, right });
+      return petUpdate.timeToMove * 1000;
+    },
 
-      return timeToMove * 1000;
+    movePetFast(context) {
+      const oldRight = context.state.pet.right;
+      const newRight = Math.floor(
+        Math.random() * (context.state.pet.maxRight - 1 + 1) + 1
+      );
+      const petUpdate = petCalc(oldRight, newRight, 300);
+
+      Object.assign(context.state.pet, petUpdate);
+
+      return petUpdate.timeToMove * 1000;
+    },
+
+    movePetToMe(context) {
+      const oldRight = context.state.pet.right;
+      const newRight = 350; // right: 350px
+      const petUpdate = petCalc(oldRight, newRight);
+
+      Object.assign(context.state.pet, petUpdate);
+
+      return petUpdate.timeToMove * 1000;
+    },
+
+    petKick(context) {
+      Object.assign(context.state.pet, {
+        state: "kick"
+      });
+
+      return 500;
     },
 
     resetBulb({ commit }) {

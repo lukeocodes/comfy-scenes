@@ -1,25 +1,31 @@
 module.exports = {
   // pet commands
-  // highfive: [
-  //   {
-  //     queue: "pet",
-  //     action: {
-  //       name: "movePetToMe"
-  //     },
-  //     sfx: {
-  //       src: "quietpop.mp3"
-  //     }
-  //   },
-  //   {
-  //     queue: "pet",
-  //     action: {
-  //       name: "petHighFive"
-  //     },
-  //     sfx: {
-  //       src: "highfive.mp3"
-  //     }
-  //   }
-  // ],
+  kick: [
+    {
+      queue: "pet",
+      action: {
+        name: "movePetToMe"
+      }
+      // sfx: {
+      //   src: "quietpop.mp3"
+      // }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "petKick"
+      }
+      // sfx: {
+      //   src: "highfive.mp3"
+      // }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "movePet"
+      }
+    }
+  ],
   poke: {
     queue: "pet",
     action: {
@@ -27,6 +33,58 @@ module.exports = {
     },
     sfx: {
       src: "pop.mp3"
+    }
+  },
+  boo: [
+    {
+      queue: "pet",
+      action: {
+        name: "movePetFast"
+      }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "movePetFast"
+      }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "movePetFast"
+      }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "movePetFast"
+      }
+    },
+    {
+      queue: "pet",
+      action: {
+        name: "movePetFast"
+      }
+    }
+  ],
+  dave: {
+    action: {
+      name: "petDave"
+    }
+  },
+  greg: {
+    action: {
+      name: "petGreg"
+    }
+  },
+  blue: {
+    action: {
+      name: "petBlue"
+    }
+  },
+  mort: {
+    action: {
+      name: "petMort"
     }
   },
   biggly: {
