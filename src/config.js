@@ -1,28 +1,31 @@
 module.exports = {
-  // pet commands
+  // other actions
+  rain: {
+    action: {
+      name: "rainDinos"
+    }
+  },
+  // pet actions
   kick: [
     {
       queue: "pet",
       action: {
         name: "movePetToMe"
       }
-      // sfx: {
-      //   src: "quietpop.mp3"
-      // }
     },
     {
       queue: "pet",
       action: {
         name: "petKick"
+      },
+      sfx: {
+        src: "hit.mp3"
       }
-      // sfx: {
-      //   src: "highfive.mp3"
-      // }
     },
     {
       queue: "pet",
       action: {
-        name: "movePet"
+        name: "movePetFast"
       }
     }
   ],
@@ -103,7 +106,7 @@ module.exports = {
       name: "resetBulb"
     },
     sfx: {
-      src: "pop.mp3"
+      src: "switch.mp3"
     }
   },
   bulb: {
@@ -111,43 +114,64 @@ module.exports = {
       name: "changeBulb"
     },
     sfx: {
-      src: "pop.mp3"
+      src: "switch.mp3"
     }
   },
   // turn logo light on/off commands
   off: {
     action: {
       name: "lightsOut"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   lightsout: {
     action: {
       name: "lightsOut"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   lightsoff: {
     action: {
       name: "lightsOut"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   darkness: {
     action: {
       name: "lightsOut"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   lightson: {
     action: {
       name: "lightsOn"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   lightness: {
     action: {
       name: "lightsOn"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   on: {
     action: {
       name: "lightsOn"
+    },
+    sfx: {
+      src: "switch.mp3"
     }
   },
   // sfx

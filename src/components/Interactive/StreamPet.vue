@@ -21,7 +21,8 @@ export default {
       sfx: null,
       vfx: null,
       effect: null,
-      listener: null
+      listener: null,
+      timeout: null
     };
   },
 
@@ -140,7 +141,10 @@ export default {
     this.listener = this.$refs.pet.addEventListener("transitionend", () => {
       this.$store.commit("petIdle");
 
-      const timeout = setTimeout(() => {
+      // clear the timeout before setting it
+      clearTimeout(this.timeout);
+
+      this.timeout = setTimeout(() => {
         this.$store.commit("enqueue", {
           queue: "pet",
           action: {
@@ -148,7 +152,7 @@ export default {
           }
         });
 
-        clearTimeout(timeout);
+        clearTimeout(this.timeout);
       }, 150000);
     });
   },

@@ -40,6 +40,7 @@ export default new Vuex.Store({
       default: [],
       pet: []
     },
+    raid: [],
     effect: null
   },
 
@@ -78,6 +79,10 @@ export default new Vuex.Store({
   },
 
   actions: {
+    rainDinos(context) {
+      context.state.raid.push(...[{}, {}, {}, {}, {}, {}]);
+    },
+
     petGetBiggly(context) {
       context.state.pet.petSize += 4;
     },
