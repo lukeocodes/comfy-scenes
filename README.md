@@ -2,9 +2,21 @@
 
 ![GitHub](https://img.shields.io/github/license/lukeocodes/comfy-scenes?style=flat-square)
 
-### A rudimentary effects board for Twitch streamers. 
+### An effects maker for Twitch streamers. 
 
-It monitors your Twitch channel chat for `!commands` using [Comfy.js](https://github.com/instafluff/ComfyJS) (by [instafluff](https://github.com/instafluff/ComfyJS#instafluff) and [others](https://github.com/instafluff/ComfyJS#credits)), and plays a corresponding `.mp3` file.
+This app will monitor your Twitch channel for `!commands` using [Comfy.js](https://github.com/instafluff/ComfyJS) (by [instafluff](https://github.com/instafluff/ComfyJS#instafluff) and [others](https://github.com/instafluff/ComfyJS#credits)). It can play `.mp3` files, display visual effects, and interact with Vue.js components.
+
+Included in this app are my stream scenes. 
+
+Please FEEL FREE to take these and use them for your own purposes. If you like them, I'd love to hear about what you do with them.
+
+## Credit
+
+Uses, and named after, [Comfy.js](https://github.com/instafluff/ComfyJS) (by [instafluff](https://github.com/instafluff/ComfyJS#instafluff)).
+
+Uses [Dino Characters](https://arks.itch.io/dino-characters) by [ScissorMarks](https://twitter.com/ScissorMarks)
+
+![Dino Characters](https://img.itch.zone/aW1hZ2UvMTgwMTczLzg0MTg2Mi5naWY=/347x500/mrCxpv.gif)
 
 ## Demo
 
@@ -486,7 +498,3 @@ npm run build
 ```
 npm run lint
 ```
-
-## Credit
-
-Uses, and named after, [Comfy.js](https://github.com/instafluff/ComfyJS) (by [instafluff](https://github.com/instafluff/ComfyJS#instafluff)).
