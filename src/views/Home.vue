@@ -1,6 +1,6 @@
 <template>
   <div class="text-white">
-    Check out /frame-overlay
+    Check out /frame-overlay or /title-overlay
   </div>
 </template>
 
