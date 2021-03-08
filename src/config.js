@@ -1,5 +1,10 @@
 module.exports = {
   // other actions
+  drop: {
+    action: {
+      name: "dropDino"
+    }
+  },
   rain: {
     action: {
       name: "rainDinos"
@@ -178,11 +183,6 @@ module.exports = {
   pop: {
     sfx: {
       src: "pop.mp3"
-    }
-  },
-  drop: {
-    sfx: {
-      src: "drop.mp3"
     }
   },
   grounded: {

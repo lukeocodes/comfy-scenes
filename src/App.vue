@@ -108,6 +108,10 @@ export default {
       }, 200);
     },
 
+    handleRaid(user, viewers) {
+      this.$store.dispatch("dinoRaid", user, viewers);
+    },
+
     handleCommand(user, command, message, flags, extra) {
       if (command in config) {
         const effect = config[command];

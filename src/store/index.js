@@ -79,6 +79,21 @@ export default new Vuex.Store({
   },
 
   actions: {
+    dinoRaid(context, name, size) {
+      context.state.raid.push({ name });
+      if (size > 1) {
+        context.state.raid.push(
+          ...Array.apply(null, Array(size - 1)).map(() => {
+            return {};
+          })
+        );
+      }
+    },
+
+    dropDino(context) {
+      context.state.raid.push({ name: "lukeocodes" });
+    },
+
     rainDinos(context) {
       context.state.raid.push(...[{}, {}, {}, {}, {}, {}]);
     },

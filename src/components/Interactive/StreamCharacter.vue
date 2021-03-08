@@ -5,7 +5,9 @@
     :class="[state, character]"
     :style="styleObj"
     @click="close()"
-  />
+  >
+    <span v-if="player.name" class="name">{{ player.name }}</span>
+  </div>
 </template>
 
 <script>
@@ -14,6 +16,13 @@ const getRand = (min, max) => {
 };
 
 export default {
+  props: {
+    player: {
+      type: Object,
+      required: true
+    }
+  },
+
   data() {
     const right = getRand(1, window.innerWidth);
     const size = getRand(4, 10);
@@ -89,6 +98,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("http://fonts.cdnfonts.com/css/press-start-2p");
+
 .character {
   @apply absolute;
   background-image: url("~@/assets/images/dino/sheets/greg.png");
@@ -181,5 +192,21 @@ export default {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+}
+
+.falling .name {
+  @apply hidden;
+}
+
+.name {
+  @apply block;
+  font-family: "Press Start 2P", sans-serif;
+  @apply bg-white;
+  @apply inline-block;
+  @apply border-2;
+  @apply border-black;
+  /* @apply rounded-full; */
+  @apply px-4;
+  @apply py-1;
 }
 </style>

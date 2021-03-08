@@ -1,6 +1,10 @@
 <template>
   <div class="relative flex backdrop">
-    <StreamCharacter v-for="(character, index) in raid" :key="index" />
+    <StreamCharacter
+      v-for="(player, index) in raid"
+      :key="index"
+      :player="player"
+    />
     <StreamLamp />
     <StreamPet />
   </div>
