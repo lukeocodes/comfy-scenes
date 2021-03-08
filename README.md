@@ -30,6 +30,15 @@ This can be deployed straight to Netlify, to use in your stream. Just click the 
 
 Remember to add/edit `VUE_APP_CHANNEL_NAME` in your deploy environment to the channel name to connect to.
 
+## Current Scenes
+
+- `/frame-overlay` includes interactive logo on bottom ledge, pet interactions, lava lamp.
+- `/title-overlay` includes large query string logo and pet interactions.
+  - `/title-overlay?title=brb&subtitle=@lukeocodes`
+  - `/title-overlay?title=offline&subtitle=@lukeocodes`
+  - `/title-overlay?title=starting%20soon&subtitle=@lukeocodes`
+  - `/title-overlay?title=%23hashtag&subtitle=@lukeocodes&background=true`
+
 ## Current Commands and Actions
 
 ### !rain
