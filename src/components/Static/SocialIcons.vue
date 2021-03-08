@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex ml-4 space-x-4">
+  <div class="relative flex space-x-4">
     <GitHubIcon />
     <TwitterIcon />
   </div>

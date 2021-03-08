@@ -5,7 +5,7 @@
       :key="index"
       :player="player"
     />
-    <StreamLamp />
+    <StreamLamp v-if="!noLamp" />
     <StreamPet />
   </div>
 </template>
@@ -16,6 +16,13 @@ import StreamLamp from "@/components/Interactive/StreamLamp";
 import StreamPet from "@/components/Interactive/StreamPet";
 
 export default {
+  props: {
+    noLamp: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   components: {
     StreamCharacter,
     StreamLamp,

@@ -14,6 +14,11 @@ const routes = [
     path: "/frame-overlay",
     name: "Frame Overlay",
     component: () => import("../views/FrameOverlay.vue")
+  },
+  {
+    path: "/title-overlay",
+    name: "Title Overlay",
+    component: () => import("../views/TitleOverlay.vue")
   }
 ];
 
