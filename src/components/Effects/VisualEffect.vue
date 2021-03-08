@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <img
-      ref="imageFile"
-      width="300"
-      class="absolute"
-      :class="[position, animation]"
-    />
-    <audio ref="audioFile" />
-  </div>
+  <img
+    v-if="effect.src"
+    :src="`/img/${effect.src}`"
+    ref="imageFile"
+    width="300"
+    class="absolute"
+    :class="[position, animation]"
+  />
 </template>
 
 <script>
@@ -38,28 +37,8 @@ export default {
     }
   },
 
-  /**
-   * MP3 and Image are mutually exclusive, so two
-   * conditions are used
-   */
   mounted() {
-    if (this.effect.mp3) {
-      const sound = this.$refs.audioFile;
-      sound.src = `effects/sounds/${this.effect.mp3}`;
-      sound.addEventListener("ended", () => {
-        sound.src = "";
-        this.$emit("ended");
-      });
-      sound.play().catch(error => {
-        console.log("failed to play sound", error);
-        this.$emit("ended");
-      });
-    }
-
-    if (this.effect.img) {
-      const image = this.$refs.imageFile;
-      image.src = `img/${this.effect.img}`;
-
+    if (this.effect.src) {
       this.$nextTick(() => {
         const timeout = setTimeout(() => {
           this.$emit("ended");
@@ -73,10 +52,10 @@ export default {
 
 <style scoped>
 .flicker {
-  animation: neon-blue-flicker 3s infinite;
+  animation: flicker 3s infinite;
 }
 
-@keyframes neon-blue-flicker {
+@keyframes flicker {
   0% {
     opacity: 1;
   }
