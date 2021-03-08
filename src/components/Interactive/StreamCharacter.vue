@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("http://fonts.cdnfonts.com/css/press-start-2p");
+@import url("//fonts.cdnfonts.com/css/press-start-2p");
 
 .character {
   @apply absolute;
