@@ -1,2 +1,8 @@
 [template.environment]
 VUE_APP_CHANNEL_NAME = "Change to your Twitch channel name"
+
+# The following redirect is intended for use with most SPA's that handles routing internally.
+[[redirects]]
+from = "/*"
+status = 200
+to = "/index.html"
